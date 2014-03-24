@@ -104,11 +104,15 @@
         completionHandler(thumb);
     } else {
         //create new one and save to cache if we don't
-        [self CGImageAtIndex:index completionHandler:^(CGImageRef CGImage) {
-            UIImage *image = [UIImage imageWithCGImage:CGImage
+        [self.library assetForURL:self.images[index][@"URL"] resultBlock:^(ALAsset *asset) {
+            ALAssetRepresentation *representation = [asset defaultRepresentation];
+            UIImage *image = [UIImage imageWithCGImage:[representation fullScreenImage]
                                                  scale:self.thumbScale
                                            orientation:UIImageOrientationUp];
+            [self.thumbCache setObject:image forKey:[NSNumber numberWithInteger:index]];
             completionHandler(image);
+        } failureBlock:^(NSError *error) {
+            NSLog(@"Error loading asset");
         }];
     }
 }
