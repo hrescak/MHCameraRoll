@@ -30,7 +30,7 @@
 {
     self.cameraRoll = [[MHCameraRoll alloc] init];
     self.cameraRoll.fileTypes = MHCameraRollFileTypesAll; //don't filter by type
-    self.cameraRoll.thumbScale = 0.33; //make scale to be a third of the screen
+    self.cameraRoll.thumbStyle = MHCameraRollThumbStyleSmallSquare; //make scale to be a third of the screen
     
     [self.cameraRoll loadCameraRollWithSuccess:^{
         // camera roll has loaded images, this is a good place to call reloadData

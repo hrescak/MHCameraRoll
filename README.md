@@ -4,13 +4,17 @@ MHCameraRoll
 A wrapper somewhat simplifying work with camera roll on iOS, with the option of only loading screenshots, photos or both. Features handy accessors for thumbs, full images and count, and is ready for populating a UITableView or UICollectionView. The collection view example attached. also has a cache for thumbnails so images don't need to be loaded twice.
 
 ### Usage
-Initialize a camera roll instance, set it's properties up and load it. . This can be done in a **ViewDidLoad:** method.
+Usually in the _ViewDidLoad:_ method, initialize a camera roll instance, set it's properties up and load it. The available properties are:
+
+**fileTypes** - you can choose between loading just photos, screenshots or both.
+**thumbStyle** - you can choose between thumbnails that are small low-resolution square crops or a bit bigger thumbnails preserving the aspect ratio.
+
 ```Objective-C
 - (void)viewDidLoad
 {
     self.cameraRoll = [[MHCameraRoll alloc] init];
     self.cameraRoll.fileTypes = MHCameraRollFileTypesAll; //load both photos and screenshots
-    self.cameraRoll.thumbScale = 0.33; //make scale to be a third of the screen
+    self.cameraRoll.thumbStyle = MHCameraRollThumbStyleSmallSquare; //load small square thumbs
     
     [self.cameraRoll loadCameraRollWithSuccess:^{
         // camera roll has loaded images, this is a good place to call reloadData
@@ -22,7 +26,6 @@ Initialize a camera roll instance, set it's properties up and load it. . This ca
         // re-authorize the app to use camera roll.
         self.unauthorizedView.alpha = 1;
     }];
-   
 		// do any other setup 
     [super viewDidLoad];
 }

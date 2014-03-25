@@ -25,7 +25,7 @@
     if (self) {
         self.library = [[ALAssetsLibrary alloc] init];
         self.fileTypes = MHCameraRollFileTypesAll;
-        self.thumbScale = 0.25;
+        self.thumbStyle = MHCameraRollThumbStyleSmallSquare;
         self.images = [[NSMutableArray alloc] init];
         self.thumbCache = [[NSMutableDictionary alloc] init];
     }
@@ -44,12 +44,11 @@
         [self.library enumerateGroupsWithTypes:ALAssetsGroupSavedPhotos usingBlock:^(ALAssetsGroup *group, BOOL *stop) {
             [group setAssetsFilter:[ALAssetsFilter allPhotos]];
             [group enumerateAssetsWithOptions:NSEnumerationReverse usingBlock:^(ALAsset *alAsset, NSUInteger index, BOOL *innerStop) {
-                
-                // The end of the enumeration is signaled by asset == nil.
+            
                 if (alAsset) {
                     ALAssetRepresentation *representation = [alAsset defaultRepresentation];
                     NSString *fileName = [representation filename];
-                    if ([self shouldAddFileOfExtension:[fileName pathExtension]]) {
+                    if ([self shouldReadFileOfExtension:[fileName pathExtension]]) {
                         NSDictionary *image = @{@"fileName": fileName,
                                                 @"URL": [representation url]};
                         [self.images addObject:image];
@@ -69,11 +68,11 @@
     }
 }
 
-#pragma mark - custom scale setter
+#pragma mark - custom style setter
 
-- (void)setThumbScale:(CGFloat)thumbScale
+- (void)setThumbStyle:(MHCameraRollThumbStyle)thumbStyle
 {
-    _thumbScale = thumbScale;
+    _thumbStyle = thumbStyle;
     //purge the thumb cache since the scale is not relevant anymore
     [self.thumbCache removeAllObjects];
 }
@@ -105,12 +104,14 @@
     } else {
         //create new one and save to cache if we don't
         [self.library assetForURL:self.images[index][@"URL"] resultBlock:^(ALAsset *asset) {
-            ALAssetRepresentation *representation = [asset defaultRepresentation];
-            UIImage *image = [UIImage imageWithCGImage:[representation fullScreenImage]
-                                                 scale:self.thumbScale
-                                           orientation:UIImageOrientationUp];
-            [self.thumbCache setObject:image forKey:[NSNumber numberWithInteger:index]];
-            completionHandler(image);
+            UIImage *thumb = [[UIImage alloc] init];
+            if (self.thumbStyle == MHCameraRollThumbStyleSmallSquare) {
+                thumb = [UIImage imageWithCGImage:[asset thumbnail]];
+            } else {
+                thumb = [UIImage imageWithCGImage:[asset aspectRatioThumbnail]];
+            }
+            [self.thumbCache setObject:thumb forKey:[NSNumber numberWithInteger:index]];
+            completionHandler(thumb);
         } failureBlock:^(NSError *error) {
             NSLog(@"Error loading asset");
         }];
@@ -137,7 +138,7 @@
 
 #pragma mark - helper methods
 
--(BOOL)shouldAddFileOfExtension:(NSString *)extension{
+-(BOOL)shouldReadFileOfExtension:(NSString *)extension{
     if (self.fileTypes == MHCameraRollFileTypesAll) {
         //load all images
         return YES;

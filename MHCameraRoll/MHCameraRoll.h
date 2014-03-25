@@ -16,8 +16,13 @@ typedef NS_ENUM(NSInteger, MHCameraRollFileTypes) {
     MHCameraRollFileTypesPhotos
 };
 
-@property (nonatomic, assign) CGFloat thumbScale;
+typedef NS_ENUM(NSInteger, MHCameraRollThumbStyle) {
+    MHCameraRollThumbStyleSmallSquare,
+    MHCameraRollThumbStyleOriginalRatio
+};
+
 @property (nonatomic, assign) MHCameraRollFileTypes fileTypes;
+@property (nonatomic, assign) MHCameraRollThumbStyle thumbStyle;
 
 - (void)loadCameraRollWithSuccess:(void(^)(void))success unauthorized:(void(^)(void))unauthorized;
 
