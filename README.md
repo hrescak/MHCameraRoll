@@ -26,7 +26,7 @@ Usually in the _ViewDidLoad:_ method, initialize a camera roll instance, set it'
         // re-authorize the app to use camera roll.
         self.unauthorizedView.alpha = 1;
     }];
-		// do any other setup 
+    // do any other setup 
     [super viewDidLoad];
 }
 ```
@@ -45,8 +45,7 @@ thumbnail can become handy when constructing cells:
 {
     UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"collectionCell" forIndexPath:indexPath];
     [self.cameraRoll thumbAtIndex:indexPath.row completionHandler:^(UIImage *thumb) {
-       // do something with the thumbnail, like add it to
-       // an imageView in the cell 
+       // do something with the thumbnail, like add it to an imageView in the cell 
     }];
     return cell;
 }
@@ -55,7 +54,6 @@ thumbnail can become handy when constructing cells:
 the full image accessor can be handy when you're ready to manipulate the full scale image
 ```Objective-C
 [self.cameraRoll imageAtIndex:indexPath.row completionHandler:^(UIImage *image) {
-        // do something with the full scale image, like upload 
-        // it to the server.
+        // do something with the full scale image, like upload  it to the server.
     }];
 ```

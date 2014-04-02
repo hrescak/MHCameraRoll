@@ -120,8 +120,15 @@
 
 - (void)imageAtIndex:(NSInteger)index completionHandler:(void(^)(UIImage *image))completionHandler
 {
-    [self CGImageAtIndex:index completionHandler:^(CGImageRef CGImage) {
-        completionHandler([UIImage imageWithCGImage:CGImage]);
+    NSDictionary *image = self.images[index];
+    [self.library assetForURL:image[@"URL"] resultBlock:^(ALAsset *asset) {
+        ALAssetRepresentation *representation = [asset defaultRepresentation];
+        UIImage *returnImage = [UIImage imageWithCGImage:[representation fullResolutionImage]
+                                                   scale:[representation scale]
+                                             orientation:(int)[representation orientation]];
+        completionHandler(returnImage);
+    } failureBlock:^(NSError *error) {
+        NSLog(@"Error loading asset");
     }];
 }
 
