@@ -147,6 +147,7 @@
             NSUInteger buffered = [representation getBytes:buffer fromOffset:0.0 length:(NSUInteger)representation.size error:nil];
             NSData *data = [NSData dataWithBytesNoCopy:buffer length:buffered freeWhenDone:YES];
             returnImage = [UIImage sd_animatedGIFWithData:data];
+            completionHandler(returnImage);
             
             
         }
