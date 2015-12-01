@@ -38,3 +38,20 @@ typedef NS_ENUM(NSInteger, MHCameraRollThumbStyle) {
 - (void)CGImageAtIndex:(NSInteger)index completionHandler:(void(^)(CGImageRef CGImage))completionHandler;
 
 @end
+
+
+
+
+
+
+
+
+@interface UIImage (GIF)
+
++ (UIImage *)sd_animatedGIFNamed:(NSString *)name;
+
++ (UIImage *)sd_animatedGIFWithData:(NSData *)data;
+
+- (UIImage *)sd_animatedImageByScalingAndCroppingToSize:(CGSize)size;
+
+@end

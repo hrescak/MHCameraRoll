@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6DC67E641C0E3E7E0059474F /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6DC67E631C0E3E7E0059474F /* ImageIO.framework */; };
 		DCA1E30718DF53A700FD557B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DCA1E30618DF53A700FD557B /* Foundation.framework */; };
 		DCA1E30918DF53A700FD557B /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DCA1E30818DF53A700FD557B /* CoreGraphics.framework */; };
 		DCA1E30B18DF53A700FD557B /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DCA1E30A18DF53A700FD557B /* UIKit.framework */; };
@@ -36,6 +37,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		6DC67E631C0E3E7E0059474F /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
 		DCA1E30318DF53A700FD557B /* Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DCA1E30618DF53A700FD557B /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		DCA1E30818DF53A700FD557B /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -65,6 +67,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6DC67E641C0E3E7E0059474F /* ImageIO.framework in Frameworks */,
 				DCA1E30918DF53A700FD557B /* CoreGraphics.framework in Frameworks */,
 				DCA1E30B18DF53A700FD557B /* UIKit.framework in Frameworks */,
 				DCA1E30718DF53A700FD557B /* Foundation.framework in Frameworks */,
@@ -106,6 +109,7 @@
 		DCA1E30518DF53A700FD557B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				6DC67E631C0E3E7E0059474F /* ImageIO.framework */,
 				DCA1E30618DF53A700FD557B /* Foundation.framework */,
 				DCA1E30818DF53A700FD557B /* CoreGraphics.framework */,
 				DCA1E30A18DF53A700FD557B /* UIKit.framework */,
@@ -465,6 +469,7 @@
 				DCA1E33118DF53A700FD557B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		DCA1E33218DF53A700FD557B /* Build configuration list for PBXNativeTarget "ExampleTests" */ = {
 			isa = XCConfigurationList;
@@ -473,6 +478,7 @@
 				DCA1E33418DF53A700FD557B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

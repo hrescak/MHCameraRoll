@@ -76,4 +76,18 @@
     }];
     return cell;
 }
+
+
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
+    
+    
+    
+    NSDictionary *imageInfo = [self.cameraRoll imageInfoAtIndex:indexPath.row];
+    [self.cameraRoll imageAtIndex:indexPath.row completionHandler:^(UIImage *image) {
+        
+        
+    }];
+}
+
+
 @end
