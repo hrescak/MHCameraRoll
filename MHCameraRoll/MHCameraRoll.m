@@ -95,6 +95,13 @@
     return fileName;
 }
 
+- (NSDictionary *)imageInfoAtIndex:(NSInteger)index{
+    
+    
+    NSDictionary *image = [self.images objectAtIndex:index];
+    return image;
+}
+
 - (void)thumbAtIndex:(NSInteger)index completionHandler:(void(^)(UIImage *thumb))completionHandler
 {
     UIImage *thumb = self.thumbCache[[NSNumber numberWithInteger:index]];

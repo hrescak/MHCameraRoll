@@ -8,6 +8,10 @@
 
 #import <Foundation/Foundation.h>
 
+
+#define kFileName @"fileName"
+#define kFileUrl @"URL"
+
 @interface MHCameraRoll : NSObject
 
 typedef NS_ENUM(NSInteger, MHCameraRollFileTypes) {
@@ -28,6 +32,7 @@ typedef NS_ENUM(NSInteger, MHCameraRollThumbStyle) {
 
 - (NSInteger)imageCount;
 - (NSString *)fileNameAtIndex:(NSInteger)index;
+- (NSDictionary *)imageInfoAtIndex:(NSInteger)index;
 - (void)thumbAtIndex:(NSInteger)index completionHandler:(void(^)(UIImage *thumb))completionHandler;
 - (void)imageAtIndex:(NSInteger)index completionHandler:(void(^)(UIImage *image))completionHandler;
 - (void)CGImageAtIndex:(NSInteger)index completionHandler:(void(^)(CGImageRef CGImage))completionHandler;
